@@ -273,7 +273,8 @@ dropout_simple <- function(input, size = 0.05*length(input)){
   return(input)
 }
 
-y <- dropout_simple(input = x, size = 0.50)
+set.seed(123)
+y <- dropout_simple(input = x, size = 0.2)
 plot(x,x)
 plot(x, y)
 
