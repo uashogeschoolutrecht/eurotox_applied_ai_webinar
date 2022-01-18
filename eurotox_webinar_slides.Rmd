@@ -141,7 +141,7 @@ five <- ggplot(longData, aes(x = Var2, y = Var1)) +
   labs(x="pixels", y="pixels") +
   theme_bw() + theme(axis.text.x=element_text(size=9, angle=0, vjust=0.3),
                      axis.text.y=element_text(size=9),
-                     plot.title=element_text(size=11))
+                     plot.title=element_text(size=11)) + scale_y_reverse()
 
 A <- train_images[3,,]
 
@@ -153,14 +153,14 @@ four <- ggplot(longData, aes(x = Var2, y = Var1)) +
   labs(x="pixels", y="pixels") +
   theme_bw() + theme(axis.text.x=element_text(size=9, angle=0, vjust=0.3),
                      axis.text.y=element_text(size=9),
-                     plot.title=element_text(size=11))
+                     plot.title=element_text(size=11)) + scale_y_reverse()
 ```
 
 ```{r}
-cowplot::plot_grid(five, four, labels = c("Five", "Four"), label_x = -0.02, label_size = 10)
+cowplot::plot_grid(five, four, labels = c("Five", "Four"), label_x = -0.02, label_size = 10) 
 ```
 
-## Normalize the data
+## Transform to tensor and normalize the data
 ```{r}
 train_images <- array_reshape(train_images, c(60000, 28*28))
 train_images <- train_images/255
@@ -260,12 +260,6 @@ relued <- relu_simple(relu_example)
 relued
 ```
 
-## Loss function
-```{r, eval=FALSE}
-y_pred = operation(W, x)
-loss_value = loss(y_pred, y)
-```
-
 ## Dropout
 A dropout layer will output randomly seeded zero's in an input vector. It is there to prevent overfitting of the network. It introduced zero's in the hidden layer, prior to passing the data onto the output layer. This is also called regularization.
 ```{r}
@@ -299,12 +293,3 @@ x %*% y
 
 
 ```
-
-Dot products explained
-
-\begin{pmatrix}
-1 & 2\\
-3 & 4
-\end{pmatrix}
-
-
