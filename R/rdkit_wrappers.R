@@ -4,12 +4,12 @@ library(magrittr)
 library(rsvg)
 reticulate::conda_list()
 reticulate::py_config()
-reticulate::use_condaenv("r-reticulate",
-                         conda = "/home/marc/.local/share/r-miniconda/envs/r-reticulate/bin/python")
+reticulate::use_condaenv("r-reticulate")
 Sys.getenv("LD_LIBRARY_PATH")
 Sys.getenv("RDBASE")
 
-rdkit   = reticulate::import("rdkit")
+# reticulate::py_install("rdkit")
+rdkit <- reticulate::import("rdkit")
 Chem    = rdkit$Chem
 AllChem = rdkit$Chem$AllChem
 
